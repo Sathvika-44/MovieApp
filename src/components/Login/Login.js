@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Login.scss";
-import LoginForm from "../../firebase/LoginForm";
+import LoginForm from "../../firebase/LoginForm/LoginForm";
 import { useAppContext } from "../AppContext";
 
 const Login = () => {

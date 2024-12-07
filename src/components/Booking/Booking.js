@@ -48,7 +48,6 @@ const Booking = ({data}) => {
             })
 
         );
-       // setShowBooking(updatedBookings);
         console.log(localStorage.getItem("movieBookings"));
     };
 

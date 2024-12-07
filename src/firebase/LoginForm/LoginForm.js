@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { signInWithGoogle, signInWithEmail} from "./firebase";
+import { signInWithGoogle,signInWithEmail } from "../firebase";
 import "./LoginForm.scss";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState("");
@@ -63,6 +64,7 @@ const LoginForm = ({ onLoginSuccess }) => {
             <button onClick={handleGoogleLogin} className="google-login-button">
                 Login with Google
             </button>
+            <p id="info">Don't have the account,<Link to="/signup" style={{color:"blue"}}>Register</Link></p>
         </div>
     );
 };

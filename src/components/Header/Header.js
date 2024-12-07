@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import user from "../../images/user.png";
 import "./Header.scss";
 import { useDispatch } from 'react-redux';
@@ -9,17 +9,21 @@ import { useAppContext } from '../AppContext';
 
 const Header = () => {
     const navigate = useNavigate();
-    const {currentUser} = useAppContext();
+    const { currentUser } = useAppContext();
     const [term, setTerm] = useState("");
     const dispatch = useDispatch();
 
-    const handleSignIn = () => {
+    const handleLogIn = () => {
         navigate("/login");
     };
 
     const handleUserImageClick = () => {
         navigate("/login");
     };
+
+    const handleSignUp=()=>{
+        navigate("/signup")
+    }
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -45,14 +49,20 @@ const Header = () => {
                 </form>
 
             </div>
-            <div className='user-section'>
+            <div className='user'>
                 {!currentUser ? (
-                    // Show Sign In button if no user is logged in
-                    <a onClick={handleSignIn} >LogIn</a>
+                    <div className='user-section'>
+                        <div className='user-signup'>
+                            <a onClick={handleSignUp} >SignUp</a>
+                        </div>
+                        <div className='user-login'>
+                            <a onClick={handleLogIn} >LogIn</a>
+                        </div>
+                    </div>
                 ) : (
                     <div className="user-image">
                         <img
-                            src={user} 
+                            src={user}
                             alt="user"
                             onClick={handleUserImageClick}
                         />

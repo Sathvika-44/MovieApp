@@ -9,8 +9,12 @@
     text-align: center;
 }
 
-h2 {
+h2{
     margin-bottom: 20px;
+    color:white;
+}
+
+#info{
     color: #333;
 }
 
@@ -36,7 +40,6 @@ h2 {
 .login-button,
 .google-login-button {
     width: 100%;
-    padding: 10px;
     margin-top: 10px;
     font-size: 16px;
     font-weight: bold;
