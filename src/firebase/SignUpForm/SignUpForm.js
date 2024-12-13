@@ -31,12 +31,14 @@ const SignUpForm = ({ }) => {
     return (
         <div className="signup-form-container">
             <h2>Sign Up</h2>
-            {error && <div className="error-message">{error}</div>}
+            {error && <div data-testid="error-message" className="error-message">{error}</div>}
             <form onSubmit={handleSignUp}>
                 <div className="input-group">
-                    <label>Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
+                        id="email"
+                        data-testid="email"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -44,9 +46,11 @@ const SignUpForm = ({ }) => {
                     />
                 </div>
                 <div className="input-group">
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
+                        id="password"
+                        data-testid="password"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -54,9 +58,11 @@ const SignUpForm = ({ }) => {
                     />
                 </div>
                 <div className="input-group">
-                    <label>Password</label>
+                    <label htmlFor="confirm-password">Confirm Password</label>
                     <input
                         type="password"
+                        id="confirm-password"
+                        data-testid="confirm-password"
                         placeholder="Confirm your password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}

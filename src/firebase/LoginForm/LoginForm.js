@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signInWithGoogle,signInWithEmail } from "../firebase";
+import { signInWithGoogle, signInWithEmail } from "../firebase";
 import "./LoginForm.scss";
 import { Link } from "react-router-dom";
 
@@ -37,11 +37,12 @@ const LoginForm = ({ onLoginSuccess }) => {
         <div className="login-form-container">
             <h2>Login</h2>
             {error && <div className="error-message">{error}</div>}
-            <form onSubmit={handleEmailLogin}>
+            <form data-testid="login-form" onSubmit={handleEmailLogin}>
                 <div className="input-group">
-                    <label>Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
+                        id="email"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -49,22 +50,25 @@ const LoginForm = ({ onLoginSuccess }) => {
                     />
                 </div>
                 <div className="input-group">
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
+                        id="password"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit" className="login-button">Login</button>
+                <button type="submit" data-testid="login-button" className="login-button">Login</button>
             </form>
             <div className="divider">OR</div>
-            <button onClick={handleGoogleLogin} className="google-login-button">
+            <button onClick={handleGoogleLogin}
+                data-testid="google-login-button"
+                className="google-login-button">
                 Login with Google
             </button>
-            <p id="info">Don't have the account,<Link to="/signup" style={{color:"blue"}}>Register</Link></p>
+            <p id="info">Don't have the account,<Link to="/signup" style={{ color: "blue" }}>Register</Link></p>
         </div>
     );
 };

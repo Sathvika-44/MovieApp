@@ -1,17 +1,16 @@
 
 import './App.scss';
 import React from 'react';
-import { ErrorBoundary } from "react-error-boundary";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MovieDetail from './components/MovieDetail/MovieDetail';
 import Home from './components/Home/Home';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import { AppProvider } from './components/AppContext';
+import { AppProvider } from './common/AppContext/AppContext';
 import Login from './components/Login/Login';
 import SignUpForm from './firebase/SignUpForm/SignUpForm';
-import ErrorFallback from './common/ErrorFallback';
+import ErrorBoundary from './common/ErrorBoundary';
 
 function App() {
   return (
@@ -19,10 +18,7 @@ function App() {
       <AppProvider>
         <Router>
           <div className='container'>
-            <ErrorBoundary
-              FallbackComponent={ErrorFallback}
-              onReset={() => console.log("Error boundary reset")}
-            >
+          <ErrorBoundary fallback="Error">
               <Header />
               <Routes>
                 <Route path='/' exact element={<Home />} />

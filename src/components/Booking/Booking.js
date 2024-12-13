@@ -1,13 +1,14 @@
 import React ,{useState,useEffect} from "react";
 import "./Booking.scss"
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "../../common/AppContext/AppContext";
 
 const Booking = ({data}) => {
     const [showBooking, setShowBooking] = useState(false);
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [bookedSeats, setBookedSeats] = useState([]);
-    const {currentUser } = useAppContext();
+    const [errorMessage, setErrorMessage] = useState("");
+    const {currentUser } = useAppContext()||{};
 
     useEffect(() => {
         const allBookings = JSON.parse(localStorage.getItem('movieBookings')) || {};
@@ -26,9 +27,10 @@ const Booking = ({data}) => {
 
     const handleSeatClick = (seat) => {
         if (bookedSeats.includes(seat)) {
-            alert(`Seat ${seat} is already booked.`);
+            setErrorMessage(`Seat ${seat} is already booked.`);
             return;
         }
+        setErrorMessage(""); 
         setSelectedSeats((prevSeats) =>
             prevSeats.includes(seat)
                 ? prevSeats.filter((s) => s !== seat)
@@ -53,7 +55,7 @@ const Booking = ({data}) => {
 
     const handleBookTicket = () => {
         if (!selectedDate || selectedSeats.length === 0) {
-            alert("Please select a date and at least one seat.");
+            setErrorMessage("Please select a date and at least one seat.");
             return;
         }
 
@@ -83,8 +85,9 @@ const Booking = ({data}) => {
                     <div className='modal-content'>
                         <h2>Book Tickets for {data.Title}</h2>
                         <div className='date-picker'>
-                            <label>Select Date:</label>
+                            <label htmlFor="date-input">Select Date:</label>
                             <input
+                                id="date-input"
                                 type="date"
                                 value={selectedDate}
                                 onChange={(e) => setSelectedDate(e.target.value)}
@@ -92,6 +95,7 @@ const Booking = ({data}) => {
                         </div>
                         <div className='seat-selection'>
                             <h3>Select Seats:</h3>
+                            {errorMessage && <div role="alert" className="error-message">{errorMessage}</div>}
                             <div className='seats'>
                                 {[...Array(30).keys()].map((seat) => (
                                     <div

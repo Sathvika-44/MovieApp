@@ -4,7 +4,7 @@ import user from "../../images/user.png";
 import "./Header.scss";
 import { useDispatch } from 'react-redux';
 import { fetchAsyncMovies, fetchAsyncShows } from '../../features/movies/slice';
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../../common/AppContext/AppContext';
 
 
 const Header = () => {
@@ -45,7 +45,7 @@ const Header = () => {
                         placeholder='Search Movies Or Shows'
                         onChange={(e) => setTerm(e.target.value)}
                     />
-                    <button type='submit'><i className='fa fa-search'></i></button>
+                    <button type='submit' data-testid="search-button"><i className='fa fa-search'></i></button>
                 </form>
 
             </div>
