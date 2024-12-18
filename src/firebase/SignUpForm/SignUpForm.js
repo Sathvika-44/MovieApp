@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { signUpWithEmailAndPassword } from "../firebase";
- import "./SignUpForm.scss";
+//  import "./SignUpForm.scss";
 import { useNavigate } from "react-router-dom";
+import { SignupFormContainer, 
+    Heading, 
+    InputGroup, 
+    Label, 
+    Input, 
+    SignupButton, 
+    ErrorMessage  } from "./SignUpForm.styles";
 
 const SignUpForm = ({ }) => {
     const [email, setEmail] = useState("");
@@ -29,13 +36,13 @@ const SignUpForm = ({ }) => {
     };
 
     return (
-        <div className="signup-form-container">
-            <h2>Sign Up</h2>
-            {error && <div data-testid="error-message" className="error-message">{error}</div>}
+        <SignupFormContainer>
+            <Heading>Sign Up</Heading>
+            {error && <ErrorMessage data-testid="error-message" className="error-message">{error}</ErrorMessage>}
             <form onSubmit={handleSignUp}>
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input
+                <InputGroup>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
                         type="email"
                         id="email"
                         data-testid="email"
@@ -44,10 +51,10 @@ const SignUpForm = ({ }) => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="password">Password</label>
-                    <input
+                </InputGroup>
+                <InputGroup>
+                    <Label htmlFor="password">Password</Label>
+                    <Input
                         type="password"
                         id="password"
                         data-testid="password"
@@ -56,10 +63,10 @@ const SignUpForm = ({ }) => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="confirm-password">Confirm Password</label>
-                    <input
+                </InputGroup>
+                <InputGroup>
+                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                    <Input
                         type="password"
                         id="confirm-password"
                         data-testid="confirm-password"
@@ -68,10 +75,10 @@ const SignUpForm = ({ }) => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
-                </div>
-                <button type="submit" className="signup-button">SignUp</button>
+                </InputGroup>
+                <SignupButton type="submit" className="signup-button">SignUp</SignupButton>
             </form>
-        </div>
+        </SignupFormContainer>
     );
 };
 

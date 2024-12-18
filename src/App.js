@@ -1,5 +1,6 @@
 
-import './App.scss';
+// import './App.scss';
+import { ThemeProvider } from 'styled-components';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MovieDetail from './components/MovieDetail/MovieDetail';
@@ -11,9 +12,13 @@ import { AppProvider } from './common/AppContext/AppContext';
 import Login from './components/Login/Login';
 import SignUpForm from './firebase/SignUpForm/SignUpForm';
 import ErrorBoundary from './common/ErrorBoundary';
+import { theme } from './common/colors.styles';
+import GlobalStyles from './App.styles';
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles/>
     <div className="App">
       <AppProvider>
         <Router>
@@ -33,6 +38,7 @@ function App() {
         </Router>
       </AppProvider>
     </div>
+    </ThemeProvider>
   );
 }
 

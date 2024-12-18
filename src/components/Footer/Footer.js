@@ -1,11 +1,12 @@
 import React from 'react';
-import "./Footer.scss";
+// import "./Footer.scss";
+import { FooterContainer } from './Footer.styles';
 const Footer=()=>{
     return(
-        <footer className='footer'>
+        <FooterContainer>
             <div>MovieApp</div>
             <div>©2024, Movie, Inc. or its affiliates</div>
-        </footer>
+        </FooterContainer>
     );
 };
 

@@ -2,9 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getAllMovies, getAllShows } from '../../features/movies/slice';
 import MovieCard from "../MovieCard/MovieCard"
-import "./MovieListing.scss";
+// import "./MovieListing.scss";
 import Slider from 'react-slick';
 import { Settings } from '../../common/settings';
+import { MovieList, ShowList } from './MovieListing.styles';
 
 const MovieListing = () => {
 
@@ -33,18 +34,18 @@ const MovieListing = () => {
 
     return (
         <div className='movie-wrapper'>
-            <div className='movie-list'>
+            <MovieList>
                 <h2>Movies</h2>
                 <div className='movie-container'>
                     <Slider {...Settings}>{renderMovies}</Slider>
                 </div>
-            </div>
-            <div className='show-list'>
+            </MovieList>
+            <ShowList>
                 <h2>Shows</h2>
                 <div className='movie-container'>
                  <Slider {...Settings}>{renderShows}</Slider>
                 </div>
-            </div>
+            </ShowList>
         </div>
     )
 }

@@ -1,6 +1,15 @@
 import React ,{useState,useEffect} from "react";
-import "./Booking.scss"
+// import "./Booking.scss"
 import { useAppContext } from "../../common/AppContext/AppContext";
+import {  BookTicketButton,
+    BookingModal,
+    ModalContent,
+    DatePicker,
+    SeatSelection,
+    Seats,
+    ModalActions,
+    StyledButton,
+    Seat, } from "./Booking.styles";
 
 const Booking = ({data}) => {
     const [showBooking, setShowBooking] = useState(false);
@@ -71,20 +80,18 @@ const Booking = ({data}) => {
         setSelectedDate("");
     };
 
-
-
     return (
         <div>
             {currentUser &&
                 <div className="book-ticket">
-                    <button onClick={() => setShowBooking(true)}>Book Ticket</button>
+                    <BookTicketButton onClick={() => setShowBooking(true)}>Book Ticket</BookTicketButton>
                 </div>
             }
             {showBooking && (
-                <div className='booking-modal'>
-                    <div className='modal-content'>
+                <BookingModal>
+                    <ModalContent>
                         <h2>Book Tickets for {data.Title}</h2>
-                        <div className='date-picker'>
+                        <DatePicker>
                             <label htmlFor="date-input">Select Date:</label>
                             <input
                                 id="date-input"
@@ -92,31 +99,30 @@ const Booking = ({data}) => {
                                 value={selectedDate}
                                 onChange={(e) => setSelectedDate(e.target.value)}
                             />
-                        </div>
-                        <div className='seat-selection'>
+                        </DatePicker>
+                        <SeatSelection>
                             <h3>Select Seats:</h3>
                             {errorMessage && <div role="alert" className="error-message">{errorMessage}</div>}
-                            <div className='seats'>
+                            <Seats>
                                 {[...Array(30).keys()].map((seat) => (
-                                    <div
+                                    <Seat
                                         key={seat}
                                         value={0}
                                         className={`seat ${selectedSeats.includes(seat + 1) ? 'selected' : ''} ${bookedSeats.includes(seat + 1) ? 'booked' : ''}`}
                                         onClick={() => handleSeatClick(seat + 1)}
                                     >
                                         {seat + 1}
-                                    </div>
+                                    </Seat>
                                 ))}
-                            </div>
-                        </div>
-                        <div className='modal-actions'>
-                            <button onClick={handleBookTicket}>Confirm Booking</button>
-                            <button onClick={() => setShowBooking(false)}>Cancel</button>
-                        </div>
-                    </div>
-                </div>
+                            </Seats>
+                        </SeatSelection>
+                        <ModalActions>
+                            <StyledButton onClick={handleBookTicket}>Confirm Booking</StyledButton>
+                            <StyledButton onClick={() => setShowBooking(false)}>Cancel</StyledButton>
+                        </ModalActions>
+                    </ModalContent>
+                </BookingModal>
             )}
-            <div></div>
         </div>
     )
 }

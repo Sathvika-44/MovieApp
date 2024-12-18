@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { signInWithGoogle, signInWithEmail } from "../firebase";
-import "./LoginForm.scss";
+// import "./LoginForm.scss";
 import { Link } from "react-router-dom";
+import { Divider, ErrorMessage, Input, InputGroup, Label, LoginFormContainer ,LoginButton,GoogleLoginButton, Info, Heading} from "./LoginForm.styles";
 
 const LoginForm = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState("");
@@ -34,13 +35,13 @@ const LoginForm = ({ onLoginSuccess }) => {
     };
 
     return (
-        <div className="login-form-container">
-            <h2>Login</h2>
-            {error && <div className="error-message">{error}</div>}
+        <LoginFormContainer>
+            <Heading>Login</Heading>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
             <form data-testid="login-form" onSubmit={handleEmailLogin}>
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input
+                <InputGroup>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
                         type="email"
                         id="email"
                         placeholder="Enter your email"
@@ -48,10 +49,10 @@ const LoginForm = ({ onLoginSuccess }) => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="password">Password</label>
-                    <input
+                </InputGroup>
+                <InputGroup>
+                    <Label htmlFor="password">Password</Label>
+                    <Input
                         type="password"
                         id="password"
                         placeholder="Enter your password"
@@ -59,17 +60,17 @@ const LoginForm = ({ onLoginSuccess }) => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                </div>
-                <button type="submit" data-testid="login-button" className="login-button">Login</button>
+                </InputGroup>
+                <LoginButton type="submit" data-testid="login-button" className="login-button">Login</LoginButton>
             </form>
-            <div className="divider">OR</div>
-            <button onClick={handleGoogleLogin}
+            <Divider>OR</Divider>
+            <GoogleLoginButton onClick={handleGoogleLogin}
                 data-testid="google-login-button"
                 className="google-login-button">
                 Login with Google
-            </button>
-            <p id="info">Don't have the account,<Link to="/signup" style={{ color: "blue" }}>Register</Link></p>
-        </div>
+            </GoogleLoginButton>
+            <Info id="info">Don't have the account,<Link to="/signup" style={{ color: "blue" }}>Register</Link></Info>
+        </LoginFormContainer>
     );
 };
 

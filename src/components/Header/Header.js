@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import user from "../../images/user.png";
-import "./Header.scss";
+// import "./Header.scss";
 import { useDispatch } from 'react-redux';
 import { fetchAsyncMovies, fetchAsyncShows } from '../../features/movies/slice';
 import { useAppContext } from '../../common/AppContext/AppContext';
+import {  HeaderContainer,
+    Logo,
+    UserImage,
+    UserSection,
+    SearchBar, } from './Header.styles';
 
 
 const Header = () => {
@@ -34,11 +39,11 @@ const Header = () => {
     }
 
     return (
-        <div className='header'>
-            <div className='logo'>
+        <HeaderContainer>
+            <Logo>
                 <Link to="/">MovieApp</Link>
-            </div>
-            <div className='search-bar'>
+            </Logo>
+            <SearchBar>
                 <form onSubmit={submitHandler}>
                     <input type='text'
                         value={term}
@@ -48,28 +53,28 @@ const Header = () => {
                     <button type='submit' data-testid="search-button"><i className='fa fa-search'></i></button>
                 </form>
 
-            </div>
+            </SearchBar>
             <div className='user'>
                 {!currentUser ? (
-                    <div className='user-section'>
+                    <UserSection>
                         <div className='user-signup'>
                             <a onClick={handleSignUp} >SignUp</a>
                         </div>
                         <div className='user-login'>
                             <a onClick={handleLogIn} >LogIn</a>
                         </div>
-                    </div>
+                    </UserSection>
                 ) : (
-                    <div className="user-image">
+                    <UserImage>
                         <img
                             src={user}
                             alt="user"
                             onClick={handleUserImageClick}
                         />
-                    </div>
+                    </UserImage>
                 )}
             </div>
-        </div>
+        </HeaderContainer>
     );
 };
 

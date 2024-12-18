@@ -90,7 +90,8 @@
 // export default Login;
 
 import React, { useState, useEffect } from "react";
-import "./Login.scss";
+// import "./Login.scss";
+import { UserDetailsContainer,UserInfo } from "./Login.styles";
 import LoginForm from "../../firebase/LoginForm/LoginForm";
 import { useAppContext } from "../../common/AppContext/AppContext";
 
@@ -153,11 +154,11 @@ const Login = () => {
                 <LoginForm onLoginSuccess={handleLoginSuccess} />
             ) : (
                 // Show the bookings if the user is logged in
-                <div className="user-details">
-                    <div className="user-info">
+                <UserDetailsContainer>
+                    <UserInfo>
                         <h2>Welcome, {currentUser?.email || "User"}</h2> {/* Safe access to email */}
-                        <button onClick={handleLogout}>Logout</button>
-                    </div>
+                        <button onClick={handleLogout} style={{padding:'10px',color:'white'}}>Logout</button>
+                    </UserInfo>
                     <h3>Your Bookings:</h3>
                     {groupedBookings.length > 0 ? (
                         <ul>
@@ -172,7 +173,7 @@ const Login = () => {
                     ) : (
                         <p>No bookings found.</p> // Message when no bookings exist
                     )}
-                </div>
+                </UserDetailsContainer>
             )}
         </div>
     );

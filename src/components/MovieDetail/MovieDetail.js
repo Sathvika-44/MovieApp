@@ -1,9 +1,10 @@
 import React, { useEffect ,useState} from 'react';
-import "./MovieDetail.scss";
+// import "./MovieDetail.scss";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncMovieOrShowDetail, getSelectedMovieOrShow, removeSelectedMovieOrShow } from '../../features/movies/slice';
 import Booking from '../Booking/Booking';
+import { MovieInfo, MoviePlot, MovieRating, MovieSection, MovieTitle, SectionRight } from './MovieDetail.styles';
 // import { useAppContext } from '../../common/AppContext/AppContext';
 
 const MovieDetail = () => {
@@ -20,21 +21,21 @@ const MovieDetail = () => {
     
 
     return (
-        <div className='movie-section'>
+        <MovieSection>
           {data && Object.keys(data).length === 0 ? (
             <div>....Loading</div>
           ) : (
             <>
               <div className='section-left'>
-                <div className='movie-title'>{data?.Title || 'N/A'}</div>
-                <div className='movie-rating'>
+                <MovieTitle>{data?.Title || 'N/A'}</MovieTitle>
+                <MovieRating>
                   <span>IMDB Rating <i className='fa fa-star'></i> : {data?.imdbRating || 'N/A'}</span>
                   <span>IMDB Votes <i className='fa fa-thumbs-up'></i> : {data?.imdbVotes || 'N/A'}</span>
                   <span>Runtime <i className='fa fa-film'></i> : {data?.Runtime || 'N/A'}</span>
                   <span>Year <i className='fa fa-calendar'></i> : {data?.Year || 'N/A'}</span>
-                </div>
-                <div className='movie-plot'>{data?.Plot || 'No plot available'}</div>
-                <div className='movie-info'>
+                </MovieRating>
+                <MoviePlot>{data?.Plot || 'No plot available'}</MoviePlot>
+                <MovieInfo>
                   <div>
                     <span>Director</span>
                     <span>{data?.Director || 'N/A'}</span>
@@ -55,15 +56,15 @@ const MovieDetail = () => {
                     <span>Awards</span>
                     <span>{data?.Awards || 'N/A'}</span>
                   </div>
-                </div>
+                </MovieInfo>
                 <Booking data={data} />
               </div>
-              <div className='section-right'>
+              <SectionRight>
                 <img src={data?.Poster || 'https://example.com/default-poster.jpg'} alt={data?.Title || 'No title'} />
-              </div>
+              </SectionRight>
             </>
           )}
-        </div>
+        </MovieSection>
       );      
 }
 
