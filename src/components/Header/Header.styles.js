@@ -52,7 +52,7 @@ export const SearchBar = styled.div`
       font-size: 20px;
       cursor: pointer;
       height: 38px;
-      background-color:'blue';
+      border-radius:20%;
     }
   }
 

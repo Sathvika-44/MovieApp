@@ -24,7 +24,7 @@ export const BookingModal = styled.div`
 
 export const ModalContent = styled.div`
   text-align: center;
-  h2{
+  h2,h3,div{
     color:black;
   }
 `;

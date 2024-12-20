@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 import App from './App';
-import { store } from './features/store';
+// import { store } from './features/store';
 import ErrorBoundary from './common/ErrorBoundary';
+import {QueryClientProvider,QueryClient} from '@tanstack/react-query';
 
+
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ErrorBoundary fallback="There was an error">
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
+      <QueryClientProvider client={queryClient}>
         <App />
-      </Provider>
+      </QueryClientProvider>
+      {/* </Provider> */}
     </ErrorBoundary>
   </React.StrictMode>
 );

@@ -14,6 +14,7 @@ import SignUpForm from './firebase/SignUpForm/SignUpForm';
 import ErrorBoundary from './common/ErrorBoundary';
 import { theme } from './common/colors.styles';
 import GlobalStyles from './App.styles';
+import MovieListing from './components/MovieListing/MovieListing';
 
 function App() {
   return (

@@ -22,8 +22,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0 40px;
   }
   button{
-    background-color: blue;
-    border-radius:4px solid blue;
+    background-color:blue;
+    border-radius:20px ;
+    border-color:blue;
 
   }
 `;
